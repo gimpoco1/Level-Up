@@ -12,6 +12,21 @@ router.get('/tasks', async (req, res) => {
   }
 });
 
+router.get('/tasks/generate', async (req, res) => {
+  try {
+    // Fetch an existing task from the database
+    const existingTask = await Task.findOne();
+
+    if (!existingTask) {
+      return res.status(404).json({ message: 'No tasks found in the database' });
+    }
+
+    res.json(existingTask);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 // Delete a task by ID
 router.delete('/tasks/:id', async (req, res) => {
     const { id } = req.params;
@@ -49,4 +64,5 @@ router.delete('/tasks/:id', async (req, res) => {
       res.status(500).send('Internal Server Error');
     }
   });
+
 module.exports = router;
