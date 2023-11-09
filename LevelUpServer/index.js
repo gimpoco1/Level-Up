@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const routes = require('./routes');
 const bodyParser = require('body-parser');
+const PORT = 5000;
 
 const app = express();
-const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(express.json());
@@ -25,7 +25,7 @@ db.once('open', () => {
 });
 
 // Routes
-app.use('/', routes);
+app.use('/api/tasks', routes);
 
 // Start server
 app.listen(PORT, () => {
