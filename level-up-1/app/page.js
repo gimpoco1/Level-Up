@@ -1,5 +1,8 @@
+'use client'
+
 import { useEffect, useState } from 'react';
-import TaskCard from '../components/TaskCard'
+import TaskCard from './components/TaskCard'
+import handler from './api/tasks'
 
 const Home= () => {
 
