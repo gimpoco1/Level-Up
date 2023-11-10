@@ -14,3 +14,17 @@ export async function PUT(request, {params}){
         status: 200
     })
 }
+
+export async function DELETE(request, {params}){
+    const {id}= params    
+    console.log(id);
+    await connectMongoDB();
+    
+    const res = await Task.findByIdAndDelete(id);
+    console.log(res);
+    return NextResponse.json({
+        message: 'Task deleted successfully',
+    },{
+        status: 200
+    })
+}

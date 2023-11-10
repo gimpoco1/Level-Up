@@ -21,12 +21,7 @@ export default function RootLayout({ children }) {
           <li>
             <a href="/">Home</a>
           </li>
-          <li>
-            <a href="/about">About</a>
-          </li>
-          <li>
-            <a href="/info">Info</a>
-          </li>
+          
           </ul>
         </nav>
         {children}</body>
