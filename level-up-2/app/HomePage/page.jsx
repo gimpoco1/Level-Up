@@ -1,3 +1,7 @@
+//TODO when completed a task, it should go to the bottom of the list
+//TODO put profile settings in the nav bar
+//TODO add styling for progression bar
+
 'use client'
 
 import React, { useState , useEffect} from 'react';
