@@ -14,12 +14,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${nunito.className}`}>
+      <body className={`${nunito.className}`} >
         <nav>
           <h1>Logo</h1>
           <ul>
           <li>
-            <a href="/">Home</a>
+            <a href="/HomePage">Home</a>
+          </li>
+          <li>
+            <a href="/">Log out</a>
           </li>
           
           </ul>
