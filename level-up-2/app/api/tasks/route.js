@@ -13,11 +13,8 @@ export async function POST(request){
    })
   }
 
-export async function GET( request ){
+export async function GET( req, res ){
        await connectMongoDB();
-        const tasks = await Task.find({});
-        return NextResponse.json({tasks});
+        const task = await Task.aggregate([{ $sample: { size: 1 } }]);
+        return NextResponse.json({task});
     }
-
-
-

@@ -16,12 +16,9 @@ export async function PUT(request, {params}){
 }
 
 export async function DELETE(request, {params}){
-    const {id}= params    
-    console.log(id);
+    const {id}= params;  
     await connectMongoDB();
-    
     const res = await Task.findByIdAndDelete(id);
-    console.log(res);
     return NextResponse.json({
         message: 'Task deleted successfully',
     },{
