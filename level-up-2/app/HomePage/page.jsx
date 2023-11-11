@@ -13,7 +13,6 @@ export default function Home() {
   // Update Local Storage whenever tasks change
   useEffect(() => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
-    console.log('Tasks have been updated', tasks);
   }, [tasks]);
 
   // useEffect(() => {console.log('Task has been changed', tasks);}, [tasks])
