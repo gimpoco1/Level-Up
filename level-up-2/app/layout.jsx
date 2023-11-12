@@ -24,6 +24,9 @@ export default function RootLayout({ children }) {
           <li>
             <a href="/">Log out</a>
           </li>
+          <li>
+            <a href="/completed">Completed Tasks</a>
+          </li>
           
           </ul>
         </nav>

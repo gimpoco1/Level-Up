@@ -1,4 +1,3 @@
-//TODO when completed a task, it should go to the bottom of the list
 //TODO put profile settings in the nav bar
 //TODO add styling for progression bar
 
@@ -8,12 +7,13 @@ import React, { useState , useEffect} from 'react';
 import TaskCard from 'components/TaskCard';
 import ProgressionBar from 'components/ProgressionBar';
 
-const tasksFromLS = JSON.parse(localStorage.getItem('tasks')|| '[]');
 
 export default function Home() {
+
+  const tasksFromLS = JSON.parse(localStorage.getItem('tasks')|| '[]');
+  
   const [tasks, setTasks] = useState([ ...tasksFromLS]);
 
- 
   // Update Local Storage whenever tasks change
   useEffect(() => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
