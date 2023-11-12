@@ -31,7 +31,7 @@ export default function Profile() {
     const achievementMessage = () => {
         if (completedTasksCount > 10) {
             return "🌟 Amazing work! Keep it up! 🌟";
-        } else if (completedTasksCount > 5) {
+        } else if (completedTasksCount >= 5) {
             return "✨ Great job! You're on a roll! ✨";
         } else if (completedTasksCount > 0) {
             return "🚀 Off to a good start! 🚀";
