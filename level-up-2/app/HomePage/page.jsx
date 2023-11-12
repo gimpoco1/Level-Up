@@ -18,8 +18,8 @@ export default function Home() {
       const response = await fetch('http://localhost:3000/api/tasks');
       const data = await response.json();
       if (data && data.task) {
-        const newTasks = data.task.filter(nt => !tasks.some(t => t._id === nt._id));
-        setTasks(currentTasks => [...currentTasks, ...newTasks]);
+        const newTasks = [...data.task, ...tasks.filter(t => !data.task.some(nt => nt._id === t._id))];
+        setTasks(newTasks);
       }
     } catch (error) {
       console.error('Error fetching tasks:', error);
