@@ -18,3 +18,4 @@ export async function GET( request){
         const task = await Task.aggregate([{ $sample: { size: 1 } }]);
         return NextResponse.json({task});
     }
+

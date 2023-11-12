@@ -1,4 +1,4 @@
-//TODO put profile settings in the nav bar
+
 //TODO add styling for progression bar
 
 'use client'

@@ -26,7 +26,7 @@ export default function TaskCard({ tasks, setTasks }) {
       // Sort tasks to move completed ones to the bottom
       return updatedTasks.sort((a, b) => {
           if (a.completed === b.completed) return 0; // Keep original order if both have the same completed status
-          return a.completed ? 1 : -1; // Move completed tasks to the end
+          return a.completed ? 1 : -1; 
       });
   });
 };

@@ -25,3 +25,14 @@ export async function DELETE(request, {params}){
         status: 200
     })
 }
+export async function GET(request){
+    await connectMongoDB();
+    const completedCount = await Task.countDocuments({ completed: true });
+    console.log('Count: ',completedCount);
+    return NextResponse.json({
+        completedCount
+    }, {
+        status: 200
+    });
+   
+}
