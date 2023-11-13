@@ -8,7 +8,7 @@ export default function Home() {
   const tasksFromLS = JSON.parse(localStorage.getItem('tasks') || '[]');
   const [tasks, setTasks] = useState([...tasksFromLS]);
 
-  // Update Local Storage whenever tasks change
+  // Update local storage whenever tasks change
   useEffect(() => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }, [tasks]);
@@ -27,7 +27,7 @@ export default function Home() {
   };
 
   return (
-    <main className="pt-14 pb-16"> {/* Added padding to top and bottom */}
+    <main className="pt-14 pb-16">
     <div className="pt-14" >
       <ProgressionBar totalTasks={tasks.length} completedTasks={tasks.filter(task => task.completed).length} />
       </div>
