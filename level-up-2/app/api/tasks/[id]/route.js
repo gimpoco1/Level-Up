@@ -26,12 +26,20 @@ export async function DELETE(request, {params}){
     })
 }
 export async function GET(request){
-    await connectMongoDB();
-    const completedTasks = await Task.find({ completed: true });
+  try {
+      await connectMongoDB();
+      const completedTasks = await Task.find({ completed: true });
+      return NextResponse.json({
+          completedTasks
+      }, {
+          status: 200
+      });
+     
+  } catch (error) {
     return NextResponse.json({
-        completedTasks
-    }, {
-        status: 200
-    });
-   
+        message: 'Error',
+    },{
+        status: 400
+    })
+  }
 }

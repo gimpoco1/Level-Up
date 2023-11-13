@@ -26,8 +26,10 @@ export default function Home() {
     }
   };
 
+
+  
   return (
-    <main className=" pb-16">
+  <main className=" pb-16">
     <div className="pt-5" >
       <ProgressionBar totalTasks={tasks.length} completedTasks={tasks.filter(task => task.completed).length} />
       </div>
@@ -36,13 +38,12 @@ export default function Home() {
       </div>
 
       <div className="fixed bottom-4 left-4">
-  <button onClick={fetchTask} className="bg-yellow-500 text-gray-800 text-white p-4 rounded-full shadow-lg">
-    <svg className="h-6 w-6" fill="black" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-      <path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd" />
-    </svg>
-  </button>
-</div>
-
-    </main>
+       <button onClick={fetchTask} className="bg-red-300 text-gray-800 text-white p-4 rounded-full shadow-lg animate-pulse">
+         <svg className="h-6 w-6" fill="black" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+           <path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd" />
+         </svg>
+      </button>
+     </div>
+   </main>
   );
 }

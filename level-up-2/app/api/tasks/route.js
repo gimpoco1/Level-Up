@@ -14,8 +14,17 @@ export async function POST(request){
   }
 
 export async function GET( request){
-       await connectMongoDB();
-        const task = await Task.aggregate([{ $sample: { size: 1 } }]);
-        return NextResponse.json({task});
+      try {
+         await connectMongoDB();
+          const task = await Task.aggregate([{ $sample: { size: 1 } }]);
+          return NextResponse.json({task});
+      }
+        catch (error) {
+          return NextResponse.json({
+              message: 'Error',
+          },{
+              status: 400
+          })
+      
+      }
     }
-
