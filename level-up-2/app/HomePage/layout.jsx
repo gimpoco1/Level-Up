@@ -1,7 +1,6 @@
 export default function HomeLayout({ children }) {
   return (
-    <html lang="en">
-   <body>
+   <div>
     <nav className="fixed top-0 left-0 w-full flex items-center justify-between p-2 bg-white shadow-md z-50">
 
 
@@ -22,8 +21,6 @@ export default function HomeLayout({ children }) {
     <main className="container mx-auto px-4 mt-8">
         {children}
     </main>
-</body>
-
-  </html>
+    </div>
   )
 }
