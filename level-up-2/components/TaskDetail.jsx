@@ -1,24 +1,10 @@
 'use client'
-import React, { useState, useEffect } from 'react';
-import TaskCard from 'components/TaskCard';
 
 const TaskDetail = ({task}) => {
-  const [tasks, setTasks] = useState([]);
-
-  useEffect(() => {
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-  }, [tasks]);
-
-  if (!task) {
-    return <div>Loading...</div>;
-  }
-
+console.log('task', task);
   return (
-    <div>
-      <h1>{task.title} Hello there</h1>
-      <TaskCard  tasks={tasks} setTasks={setTasks} />
-    </div>
-  );
+<div>{task}</div>
+  )
 };
 
 export default TaskDetail;

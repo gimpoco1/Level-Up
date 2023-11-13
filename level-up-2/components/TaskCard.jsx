@@ -1,7 +1,10 @@
 'use client';
-import React from 'react';
+
+import TaskDetail from "./TaskDetail";
+import { useState } from "react";
 
 export default function TaskCard({ tasks, setTasks }) {
+
 
   const onDelete = async (taskId) => {
     // Logic for handling delete
@@ -22,6 +25,9 @@ export default function TaskCard({ tasks, setTasks }) {
           task._id === taskId ? { ...task, completed: !completed } : task
       );
 
+      const completedTasks = updatedTasks.filter(task => task.completed);
+        localStorage.setItem('completedTasks', JSON.stringify(completedTasks));
+
       // Sort tasks to move completed ones to the bottom
       return updatedTasks.sort((a, b) => {
           if (a.completed === b.completed) return 0; // Keep original order if both have the same completed status
@@ -30,14 +36,25 @@ export default function TaskCard({ tasks, setTasks }) {
   });
 };
 
+const [selectedTask, setSelectedTask] = useState(null);
+
+const handleSelectTask = (task) => {
+  setSelectedTask(task);
+};
+
   return (
     <>
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+      {selectedTask ? (
+        <TaskDetail task={selectedTask} />
+      ) : (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 ">
       {Array.isArray(tasks) && tasks.map(task => (
-        <div key={task._id} className="flex flex-col bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden my-4 mx-2">
+        <div key={task._id} className="flex flex-col bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden my-8 mx-2">
             <a href={`/task/${task._id}`} className="block">
               <img className="w-full h-48 object-cover" src={task.image} alt={task.title} />
-            </a>          <div className="p-4 flex-grow">
+            
+            </a>        
+          <div className="p-4 flex-grow">
             <h3 className="font-semibold text-lg text-gray-800 mb-2">{task.title}</h3>
             <p className="text-gray-600 text-sm">{task.description}</p>
           </div>
@@ -63,6 +80,7 @@ export default function TaskCard({ tasks, setTasks }) {
         </div>
       ))}
     </div>
+      )}
     </>
   );
 }

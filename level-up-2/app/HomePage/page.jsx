@@ -27,8 +27,8 @@ export default function Home() {
   };
 
   return (
-    <main className="pt-14 pb-16">
-    <div className="pt-14" >
+    <main className=" pb-16">
+    <div className="pt-5" >
       <ProgressionBar totalTasks={tasks.length} completedTasks={tasks.filter(task => task.completed).length} />
       </div>
       <div className="container mx-auto px-4">

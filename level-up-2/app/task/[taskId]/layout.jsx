@@ -6,7 +6,7 @@ export default function TaskPageLayout({ children }) {
             <svg className="h-8 w-8" fill="#4edddc" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
         </a>
   
-          <div className="flex-grow text-center">
+          <div className="flex-grow text-center pr-1">
               <a href="/HomePage" className="inline-block">
                   <img src="/logo1.png" alt="Level Up Logo" className="h-20 md:h-28 inline-block" />
               </a>

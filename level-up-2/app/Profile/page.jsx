@@ -9,7 +9,7 @@ export default function Profile() {
     useEffect(() => {
         const fetchCompletedCount = async () => {
             try {
-                const response = await fetch('/api/tasks/completedCount');
+                const response = await fetch('/api/tasks/completed');
                 if (response.ok) {
                     const data = await response.json();
                     setCompletedTasksCount(data.completedCount);
@@ -25,8 +25,14 @@ export default function Profile() {
     }, []);
 
     if (completedTasksCount === null) {
-        return <div>Loading...</div>;  // Placeholder content
-    }
+        return (
+            <div className="flex justify-center items-center pb-50 h-screen" >
+                <div className="animate-bounce text-xl font-semibold">
+                    Loading...
+                </div>
+            </div>
+        );
+        }
 
     const achievementMessage = () => {
         if (completedTasksCount > 10) {
@@ -36,7 +42,7 @@ export default function Profile() {
         } else if (completedTasksCount > 0) {
             return "🚀 Off to a good start! 🚀";
         } else {
-            return "🎯 Set and complete your tasks to see them here! 🎯";
+            return "🎯 Complete your tasks to see them here! 🎯";
         }
     };
 
