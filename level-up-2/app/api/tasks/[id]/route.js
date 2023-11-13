@@ -27,9 +27,9 @@ export async function DELETE(request, {params}){
 }
 export async function GET(request){
     await connectMongoDB();
-    const completedCount = await Task.countDocuments({ completed: true });
+    const completedTasks = await Task.find({ completed: true });
     return NextResponse.json({
-        completedCount
+        completedTasks
     }, {
         status: 200
     });
