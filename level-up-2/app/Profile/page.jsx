@@ -1,64 +1,83 @@
+
 'use client'
-
 import React, { useState, useEffect } from 'react';
-
+import TaskDetail from 'components/TaskDetail';
 
 export default function Profile() {
-    const [completedTasksCount, setCompletedTasksCount] = useState(null);
+    const [completedTasks, setCompletedTasks] = useState([]);
+    const [selectedTask, setSelectedTask] = useState(null);
+
+    const showTaskDetails = (task) => {
+        setSelectedTask(task);
+    };
+
+    const closeTaskDetails = () => {
+        setSelectedTask(null);
+    };
+
 
     useEffect(() => {
-        const fetchCompletedCount = async () => {
+        const fetchCompletedTasks = async () => {
             try {
                 const response = await fetch('/api/tasks/completed');
                 if (response.ok) {
                     const data = await response.json();
-                    setCompletedTasksCount(data.completedCount);
+                    setCompletedTasks(data.completedTasks); 
                 } else {
-                    throw new Error('Failed to fetch completed tasks count');
+                    throw new Error('Failed to fetch completed tasks');
                 }
             } catch (error) {
                 console.error(error);
             }
         };
 
-        fetchCompletedCount();
+        fetchCompletedTasks();
     }, []);
 
-    if (completedTasksCount === null) {
-        return (
-            <div className="flex justify-center items-center pb-50 h-screen" >
-                <div className="animate-bounce text-xl font-semibold">
-                    Loading...
-                </div>
-            </div>
-        );
-        }
-
     const achievementMessage = () => {
-        if (completedTasksCount > 10) {
-            return "🌟 Amazing work! Keep it up! 🌟";
-        } else if (completedTasksCount >= 5) {
-            return "✨ Great job! You're on a roll! ✨";
-        } else if (completedTasksCount > 0) {
-            return "🚀 Off to a good start! 🚀";
+        const count = completedTasks.length;
+        if (count > 20) {
+            return "🌟 Master 🌟";
+        } else if (count > 15) {
+            return "Advanced ⭐";
+        } else if (count > 10) {
+            return "Pro 🏆";
+        } else if (count >= 5) {
+            return "Amateur 🚀";
+        } else if (count > 0) {
+            return "Rookie 🌱";
         } else {
-            return "🎯 Complete your tasks to see them here! 🎯";
+            return "🎯 Set your first task! 🎯";
         }
     };
 
-    return(
-        <main className="pt-14"> 
-        <div className="bg-white shadow-lg rounded-lg p-8 text-center max-w-md mx-auto mt-4">
-            <h2 className="text-3xl font-bold text-gray-700 mb-4">Your Progress</h2>
-            <p className="text-xl text-gray-600 mb-8">
-                You have completed 
-                <span className="text-2xl font-bold text-green-600 mx-2">{completedTasksCount}</span>
-                {completedTasksCount === 1 ? 'task' : 'tasks'}.
-            </p>
-            <p className="text-lg font-semibold text-green-700 py-2 px-4 rounded-lg bg-green-100 inline-block shadow ">
-                {achievementMessage()}
-            </p>
-        </div>
-    </main>
-    )
+    return (
+        <main >
+            <div className="bg-white shadow-lg rounded-lg p-8 text-center max-w-2xl mx-auto mt-4">
+                <h2 className="text-3xl font-bold text-gray-700 mb-4">Your Progress</h2>
+                <p className="text-xl text-gray-600 mb-8">
+                    You have completed 
+                    <span className="text-2xl font-bold text-green-600 mx-2">{completedTasks.length}</span>
+                    {completedTasks.length === 1 ? 'task' : 'tasks'}.
+                </p>
+                <p className="text-lg font-semibold text-green-700 py-11 px-4 rounded-full bg-gradient-to-r from-green-200 to-blue-300 inline-block shadow-lg transform transition duration-500  hover:bg-gradient-to-br">
+                    {achievementMessage()}
+                </p>
+                <div className="mt-6">
+                    <h3 className="text-xl font-semibold text-gray-800 mb-2">Completed Tasks:</h3>
+                    <ul className="list-disc list-inside text-left pt-5">
+                        {completedTasks.map(task => (
+                            <li key={task._id} className="mb-2 text-gray-600">
+                                <button onClick={() => showTaskDetails(task)} className="hover:text-orange-500 text-left">
+                                    {task.title}
+                                </button>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
+            {selectedTask && <TaskDetail task={selectedTask} onClose={closeTaskDetails} showImage={true}/>}
+
+        </main>
+    );
 }

@@ -12,11 +12,11 @@ export default function ProfileLayout({ children }) {
             </a>
         </div>
         <div>
-            <a href="/" className="flex-shrink-0 text-gray-700 hover:text-gray-500 px-4 py-2 rounded bg-red-100 hover:bg-red-200 transition-colors duration-300">Log out</a>
+        <a href="/" className="flex-shrink-0 text-white bg-red-600 hover:bg-red-700 px-2 py-2 rounded-lg transition-colors duration-300">Log out</a>
         </div>
     </nav>
 
-    <main className="container mx-auto px-2">
+    <main className="container mx-auto px-2 ">
         {children}
     </main>
     </div>

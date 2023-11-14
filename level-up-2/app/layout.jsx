@@ -15,7 +15,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${nunito.className} bg-orange-200`}>
+<body className={`${nunito.className} bg-gradient-to-r from-orange-100 via-orange-200 to-orange-300`}>
         <nav className="flex justify-between items-center p-2 bg-white shadow-md">
           <div className="flex-grow text-center">
             {/* Logo */}

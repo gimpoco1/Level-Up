@@ -1,10 +1,18 @@
 'use client';
 
-import TaskDetail from "./TaskDetail";
 import { useState } from "react";
+import TaskDetail from "./TaskDetail";
 
 export default function TaskCard({ tasks, setTasks }) {
+  const [selectedTask, setSelectedTask] = useState(null);
 
+  const showTaskDetails = (task) => {
+    setSelectedTask(task);
+  };
+
+  const closeTaskDetails = () => {
+    setSelectedTask(null);
+  };
 
   const onDelete = async (taskId) => {
     // Logic for handling delete
@@ -38,18 +46,18 @@ export default function TaskCard({ tasks, setTasks }) {
 
   return (
     <>
- 
+{/* Main */}
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 ">
       {Array.isArray(tasks) && tasks.map(task => (
         <div key={task._id} className={`flex flex-col bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden my-4 mx-2 transition-all duration-700 ease-in-out ${task.completed ? 'opacity-50' : 'opacity-100'}`}>
-            <a href={`/task/${task._id}`} className="block">
-              <img className="w-full h-48 object-cover" src={task.image} alt={task.title} />
-            
-            </a>        
+        <button onClick={() => showTaskDetails(task)} className="block">
+          <img className="w-full h-48 object-cover" src={task.image} alt={task.title} />
+        </button>    
           <div className="p-4 flex-grow">
             <h3 className="font-semibold text-lg text-gray-800 mb-2">{task.title}</h3>
             <p className="text-gray-600 text-sm">{task.description}</p>
           </div>
+{/* Completition          */}
           <div className="flex justify-between items-center p-4 border-t">
             <button 
                 onClick={() => onToggleComplete(task._id, task.completed)}
@@ -58,6 +66,13 @@ export default function TaskCard({ tasks, setTasks }) {
             >
                 {task.completed ? 'Completed' : 'In Progress'}
             </button>
+{/* Info */}
+          <button onClick={() => showTaskDetails(task)} className="text-blue-500 hover:text-blue-600 transition-colors duration-300 pr-12 ">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="black">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M12 2a10 10 0 100 20 10 10 0 000-20z" />
+            </svg>
+          </button>
+{/* Delete */}
             <button 
                 onClick={() => onDelete(task._id)}
                 className="text-red-500 hover:text-red-600 transition-colors duration-300"
@@ -71,6 +86,8 @@ export default function TaskCard({ tasks, setTasks }) {
         </div>
       ))}
     </div>
+
+    {selectedTask && <TaskDetail task={selectedTask} onClose={closeTaskDetails} showImage={false} />}
 
     </>
   );
