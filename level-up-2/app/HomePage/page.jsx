@@ -1,6 +1,8 @@
 'use client'
 
-import React, { useState, useEffect } from 'react';
+//TODO implement a button to skip line to the first completed task
+
+import React, { useState, useEffect} from 'react';
 import TaskCard from 'components/TaskCard';
 import ProgressionBar from 'components/ProgressionBar';
 
@@ -12,6 +14,8 @@ export default function Home() {
   useEffect(() => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }, [tasks]);
+
+
 
   const fetchTask = async () => {
     try {
@@ -29,16 +33,26 @@ export default function Home() {
 
   
   return (
-  <main className=" pb-16">
-    <div className="pt-5" >
+  <main >
+    <div className="pt-3" >
+      <a href="/profile">
       <ProgressionBar totalTasks={tasks.length} completedTasks={tasks.filter(task => task.completed).length} />
+      </a>
       </div>
-      <div className="container mx-auto px-4">
-        <TaskCard tasks={tasks} setTasks={setTasks} />
+     
+      <div className="container mx-auto px-4 pt-2">
+      {tasks.length === 0 ? (
+          <div className="text-center my-10">
+            <h2 className="text-2xl font-bold text-gray-800 pb-4">Start with your first useless skill</h2>
+            <h3>Press the <span className='font-bold text-xl'>+</span> button</h3>
+          </div>
+        ) : (
+          <TaskCard tasks={tasks} setTasks={setTasks} />
+        )}
       </div>
 
       <div className="fixed bottom-4 left-4">
-       <button onClick={fetchTask} className="bg-red-300 text-gray-800 text-white p-4 rounded-full shadow-lg animate-pulse">
+      <button onClick={fetchTask} className="bg-red-300 text-gray-800 text-white p-4 rounded-full shadow-lg animate-pulse transition-all duration-200 ease-in-out transform hover:scale-110 cursor-pointer">
          <svg className="h-6 w-6" fill="black" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
            <path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd" />
          </svg>

@@ -60,21 +60,26 @@ export default function Profile() {
                     <span className="text-2xl font-bold text-green-600 mx-2">{completedTasks.length}</span>
                     {completedTasks.length === 1 ? 'task' : 'tasks'}.
                 </p>
-                <p className="text-lg font-semibold text-green-700 py-11 px-4 rounded-full bg-gradient-to-r from-green-200 to-blue-300 inline-block shadow-lg transform transition duration-500  hover:bg-gradient-to-br">
-                    {achievementMessage()}
+                <p className="text-lg font-semibold text-orange-700 py-3 px-6 rounded-lg bg-gradient-to-r from-pink-300 via-orange-300  inline-block  ">
+                {achievementMessage()}
                 </p>
+
                 <div className="mt-6">
-                    <h3 className="text-xl font-semibold text-gray-800 mb-2">Completed Tasks:</h3>
-                    <ul className="list-disc list-inside text-left pt-5">
-                        {completedTasks.map(task => (
-                            <li key={task._id} className="mb-2 text-gray-600">
-                                <button onClick={() => showTaskDetails(task)} className="hover:text-orange-500 text-left">
-                                    {task.title}
-                                </button>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+  {completedTasks.length > 0 && (
+    <>
+      <h3 className="text-xl font-semibold text-gray-800 mb-2">Completed Tasks:</h3>
+      <ul className="list-disc list-inside text-left pt-5">
+        {completedTasks.map(task => (
+          <li key={task._id} className="mb-2 text-gray-600">
+            <button onClick={() => showTaskDetails(task)} className="hover:text-orange-500 text-left">
+              {task.title}
+            </button>
+          </li>
+        ))}
+      </ul>
+    </>
+  )}
+</div>
             </div>
             {selectedTask && <TaskDetail task={selectedTask} onClose={closeTaskDetails} showImage={true}/>}
 

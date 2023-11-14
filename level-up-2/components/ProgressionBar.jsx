@@ -1,5 +1,16 @@
+'use client'
+
+import { startCelebration } from "./celebration";
+import { useEffect } from "react";
+
 export default function ProgressionBar({ totalTasks, completedTasks }) {
     const completionPercentage = totalTasks > 0 ? (completedTasks / totalTasks) * 100 : 0;
+
+    useEffect(() => {
+        if (completionPercentage === 100) {
+          startCelebration();
+        }
+      }, [completionPercentage]);
 
     let barColorClass;
     if (completionPercentage === 0) {
@@ -18,7 +29,7 @@ export default function ProgressionBar({ totalTasks, completedTasks }) {
 
     return (
         <div className="relative w-3/5 mx-auto ">
-            <span className="absolute -top-6 left-0 text-gray-700 text-sm font-semibold">Progress</span>
+            <span className="absolute -top-6 left-0 text-gray-700 text-md font-bold">Progress</span>
             <div className="bg-white rounded-full overflow-hidden shadow">
                 <div className={`transition-all duration-1000 ease-in-out ${barColorClass} text-black text-sm font-semibold text-center p-1 leading-none rounded-full`}
                      style={{ width: `${completionPercentage}%` }}>

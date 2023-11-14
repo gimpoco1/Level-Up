@@ -6,13 +6,13 @@ export default function ProfileLayout({ children }) {
             <svg className="h-8 w-8" fill="#4edddc" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
         </a>
 
-        <div className="flex-grow text-center pl-20 pr-10">
+        <div className="flex-grow text-center pl-17 pr-13">
             <a href="/HomePage" className="inline-block">
                 <img src="/logo1.png" alt="Level Up Logo" className="h-20 md:h-28 inline-block" />
             </a>
         </div>
-        <div>
-        <a href="/" className="flex-shrink-0 text-white bg-red-600 hover:bg-red-700 px-2 py-2 rounded-lg transition-colors duration-300">Log out</a>
+        <div className="pr-4">
+        <a href="/signinPage" className="flex-shrink-0 text-white bg-red-600 hover:bg-red-700 px-2 py-2  rounded-lg transition-colors duration-300">Log out</a>
         </div>
     </nav>
 

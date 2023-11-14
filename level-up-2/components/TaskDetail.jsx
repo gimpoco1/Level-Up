@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 const TaskDetail = ({ task, onClose, showImage}) => {
   const modalRef = useRef();
 
-  // Close modal when clicking outside of it
+// Close modal when clicking outside of it
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (modalRef.current && !modalRef.current.contains(event.target)) {
