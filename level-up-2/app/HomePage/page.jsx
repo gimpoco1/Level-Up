@@ -9,7 +9,7 @@ import ProgressionBar from 'components/ProgressionBar';
 export default function Home() {
   const tasksFromLS = JSON.parse(localStorage.getItem('tasks') || '[]');
   const [tasks, setTasks] = useState([...tasksFromLS]);
-
+console.log(tasks);
   // Update local storage whenever tasks change
   useEffect(() => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
