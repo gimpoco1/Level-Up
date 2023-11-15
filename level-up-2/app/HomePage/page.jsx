@@ -35,7 +35,7 @@ export default function Home() {
   return (
   <main >
     <div className="pt-3" >
-      <a href="/profile">
+      <a href="/Profile">
       <ProgressionBar totalTasks={tasks.length} completedTasks={tasks.filter(task => task.completed).length} />
       </a>
       </div>
