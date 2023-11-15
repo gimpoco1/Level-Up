@@ -1,3 +1,4 @@
+![logo1](https://github.com/gimpoco1/Level-Up/assets/128904039/81fa822d-e670-401a-8606-e15e42a8c29e)
 # Level Up - The App to Develop Useless Skills
 
 ## Introduction
@@ -22,7 +23,6 @@ Ensure you have Node.js and MongoDB installed on your system. You can download t
 - [MongoDB](https://www.mongodb.com/try/download/community)
 
 ### Installation
-![logo1](https://github.com/gimpoco1/Level-Up/assets/128904039/81fa822d-e670-401a-8606-e15e42a8c29e)
  **Clone the repository**
    ```bash
    git clone https://github.com/your-username/your-project-name.git
