@@ -14,3 +14,32 @@ export async function PUT(request, {params}){
         status: 200
     })
 }
+
+export async function DELETE(request, {params}){
+    const {id}= params;  
+    await connectMongoDB();
+    const res = await Task.findByIdAndDelete(id);
+    return NextResponse.json({
+        message: 'Task deleted successfully',
+    },{
+        status: 200
+    })
+}
+export async function GET(request){
+  try {
+      await connectMongoDB();
+      const completedTasks = await Task.find({ completed: true });
+      return NextResponse.json({
+          completedTasks
+      }, {
+          status: 200
+      });
+     
+  } catch (error) {
+    return NextResponse.json({
+        message: 'Error',
+    },{
+        status: 400
+    })
+  }
+}

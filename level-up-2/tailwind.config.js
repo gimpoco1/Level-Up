@@ -7,11 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-      },
+      backgroundImage:  theme => ({
+       'image': "url('/image-from-rawpixel-id-12561076-jpeg.jpg')"
+      }),
       fontFamily: {
         nunito: ['var(--font-nunito)'],
       }
