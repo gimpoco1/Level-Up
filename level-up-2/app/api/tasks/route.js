@@ -1,5 +1,5 @@
 import connectMongoDB from "app/mongodb";
-import Task from "model/Task";
+import Task from "../../../model/Task";
 import { NextResponse } from "next/server";
 
 export async function POST(request){
@@ -13,19 +13,18 @@ export async function POST(request){
    })
   }
 
-export async function GET(request){
-       await connectMongoDB();
-        const tasks = await Task.find({});
-        return NextResponse.json({tasks});
+export async function GET( request){
+      try {
+         await connectMongoDB();
+          const task = await Task.aggregate([{ $sample: { size: 1 } }]);
+          return NextResponse.json({task});
+      }
+        catch (error) {
+          return NextResponse.json({
+              message: 'Error',
+          },{
+              status: 400
+          })
+      
+      }
     }
-
-export async function DELETE(request){
-    const id= request.nextUrl.searchParams.get('id');
-    await connectMongoDB();
-    await Task.findByIdAndDelete(id);
-    return NextResponse.json({
-        message: 'Task deleted successfully',
-    },{
-        status: 200
-    })
-}
