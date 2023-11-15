@@ -25,5 +25,16 @@ Ensure you have Node.js and MongoDB installed on your system. You can download t
 ### Installation
  **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/your-project-name.git
-   cd your-project-name
+
+   git clone https: https://github.com/gimpoco1/Level-Up.git
+   cd Level-Up
+
+### Install dependencies
+   npm install
+
+### Start the development server
+   npm run dev
+Visit http://localhost:3000 in your browser to view the app.
+
+
+
