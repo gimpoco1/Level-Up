@@ -19,7 +19,7 @@ export default function Home() {
 
   const fetchTask = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/tasks');
+      const response = await fetch('http://localhost:3001/api/tasks');
       const data = await response.json();
       if (data && data.task) {
         const newTasks = [...data.task, ...tasks.filter(t => !data.task.some(nt => nt._id === t._id))];
