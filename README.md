@@ -34,7 +34,7 @@ Ensure you have Node.js and MongoDB installed on your system. You can download t
 
 ### Start the development server
    npm run dev
-Visit http://localhost:3000 in your browser to view the app.
+Visit http://localhost:3001 in your browser to view the app.
 
 
 
