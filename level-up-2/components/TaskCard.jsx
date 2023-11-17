@@ -1,8 +1,8 @@
 'use client';
-
+// TODO: Split logic between TaskList and TaskCard
 import { useState } from "react";
 import TaskDetail from "./TaskDetail";
-
+// TODO: redux state reminder
 export default function TaskCard({ tasks, setTasks }) {
   const [selectedTask, setSelectedTask] = useState(null);
 
@@ -13,12 +13,12 @@ export default function TaskCard({ tasks, setTasks }) {
   const closeTaskDetails = () => {
     setSelectedTask(null);
   };
-
+// TODO: deletec oomments below
   const onDelete = async (taskId) => {
     // Logic for handling delete
     setTasks(currentTasks => currentTasks.filter(task => task._id !== taskId));
   };
-
+// TODO: Once auth is implemented and we have users, update this and setTasks to be user specific
   const onToggleComplete = async (taskId, completed) => {
     // Logic for handling toggle complete
     await fetch(`http://localhost:3000/api/tasks/${taskId}`, {
@@ -26,10 +26,10 @@ export default function TaskCard({ tasks, setTasks }) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ newCompleted: !completed }),
     });
-  
+
   setTasks(currentTasks => {
         // Update the completed status of the task
-        const updatedTasks = currentTasks.map(task => 
+        const updatedTasks = currentTasks.map(task =>
           task._id === taskId ? { ...task, completed: !completed } : task
       );
 
@@ -39,7 +39,7 @@ export default function TaskCard({ tasks, setTasks }) {
       // Sort tasks to move completed ones to the bottom
       return updatedTasks.sort((a, b) => {
           if (a.completed === b.completed) return 0; // Keep original order if both have the same completed status
-          return a.completed ? 1 : -1; 
+          return a.completed ? 1 : -1;
       });
   });
 };
@@ -52,14 +52,14 @@ export default function TaskCard({ tasks, setTasks }) {
         <div key={task._id} className={`flex flex-col bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden my-4 mx-2 transition-all duration-200 ease-in-out transform hover:scale-110 cursor-pointer ${task.completed ? 'opacity-50' : 'opacity-100'}`}>
         <button onClick={() => showTaskDetails(task)} className="block">
           <img className="w-full h-48 object-cover" src={task.image} alt={task.title} />
-        </button>    
+        </button>
           <div className="p-4 flex-grow">
             <h3 className="font-semibold text-lg text-gray-800 mb-2">{task.title}</h3>
             <p className="text-gray-600 text-sm">{task.description}</p>
           </div>
 {/* Completition          */}
           <div className="flex justify-between items-center p-4 border-t ">
-            <button 
+            <button
                 onClick={() => onToggleComplete(task._id, task.completed)}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${task.completed ? 'bg-green-500 text-white' : 'bg-rose-200 text-gray-800'} transition-all duration-200 ease-in-out transform hover:scale-105 cursor-pointer `}
                 title={task.completed ? 'Task Completed' : 'Mark it as complete'}
@@ -73,7 +73,7 @@ export default function TaskCard({ tasks, setTasks }) {
             </svg>
           </button>
 {/* Delete */}
-            <button 
+            <button
                 onClick={() => onDelete(task._id)}
                 className="text-red-500 hover:text-red-600 transition-colors duration-300"
                 title="Delete?"

@@ -3,6 +3,7 @@
 import { startCelebration } from "./celebration";
 import { useEffect } from "react";
 
+// TODO: Redux edit props
 export default function ProgressionBar({ totalTasks, completedTasks }) {
     const completionPercentage = totalTasks > 0 ? (completedTasks / totalTasks) * 100 : 0;
 
@@ -11,20 +12,20 @@ export default function ProgressionBar({ totalTasks, completedTasks }) {
           startCelebration();
         }
       }, [completionPercentage]);
-
+// TODO: Replace this class toggling logic with clsx package implementation
     let barColorClass;
     if (completionPercentage === 0) {
-        barColorClass = ''; 
+        barColorClass = '';
     } else if (completionPercentage < 30) {
-        barColorClass = 'bg-gradient-to-r from-red-500 to-red-700'; 
+        barColorClass = 'bg-gradient-to-r from-red-500 to-red-700';
     } else if (completionPercentage < 50) {
         barColorClass = 'bg-gradient-to-r from-orange-500 to-orange-700';
     } else if (completionPercentage < 70) {
-        barColorClass = 'bg-gradient-to-r from-yellow-500 to-yellow-700'; 
+        barColorClass = 'bg-gradient-to-r from-yellow-500 to-yellow-700';
     } else if (completionPercentage < 100) {
-        barColorClass = 'bg-gradient-to-r from-lime-500 to-lime-700'; 
+        barColorClass = 'bg-gradient-to-r from-lime-500 to-lime-700';
     } else {
-        barColorClass = 'bg-gradient-to-r from-green-500 to-green-700'; 
+        barColorClass = 'bg-gradient-to-r from-green-500 to-green-700';
     }
 
     return (

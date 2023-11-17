@@ -11,3 +11,4 @@ const connectMongoDB = async()=>{
 
 export default connectMongoDB;
 
+// TODO: Move to a lib folder

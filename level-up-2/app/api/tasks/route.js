@@ -1,6 +1,7 @@
 import connectMongoDB from "app/mongodb";
 import Task from "../../../model/Task";
 import { NextResponse } from "next/server";
+// TODO: ID route, needs to be put somewhere else, maybe in the pages\api?
 
 export async function POST(request){
     const {title, description, image} = await request.json();
@@ -25,6 +26,6 @@ export async function GET( request){
           },{
               status: 400
           })
-      
+
       }
     }
