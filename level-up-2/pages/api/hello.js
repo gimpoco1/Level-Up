@@ -10,7 +10,6 @@ handler.use(middleware);
 handler.get(async (req, res) => {
     const tasks = await req.db.collection('tasks').find({}).toArray();
     res.json(tasks);
-    
 })
 
 export default handler; 
