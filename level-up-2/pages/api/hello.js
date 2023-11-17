@@ -10,15 +10,17 @@ handler.use(middleware);
 handler.get(async (req, res) => {
     const tasks = await req.db.collection('tasks').find({}).toArray();
     res.json(tasks);
+
 })
 
-export default handler; 
+export default handler;
+// TODO: Delete commented code
 
 // export default async function handler(req, res) {
 //     await clientPromise();
-  
+
 //     const { method } = req;
-  
+
 //     switch (method) {
 //       case 'GET':
 //         // Get all tasks
@@ -53,7 +55,7 @@ export default handler;
 //     // Update the task with the new values. Only update fields that are provided.
 //     const updatedTask = await Task.findByIdAndUpdate(id, req.body, { new: true });
 //     res.status(200).json(updatedTask);
-//     console.log(updatedTask); 
+//     console.log(updatedTask);
 //   } catch (error) {
 //     res.status(400).json({ message: error.message });
 //   }
@@ -61,8 +63,8 @@ export default handler;
 //   case 'DELETE':
 //   // Delete a task
 //   try {
-//     const { id } = req.query; 
-//     const task = await Task.findById(id); 
+//     const { id } = req.query;
+//     const task = await Task.findById(id);
 
 //     if (!task) {
 //       return res.status(404).json({ message: 'Task not found' });

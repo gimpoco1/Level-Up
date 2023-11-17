@@ -1,7 +1,7 @@
 import connectMongoDB from "app/mongodb";
 import Task from "model/Task";
 import { NextResponse } from "next/server";
-
+// TODO: ID route, needs to be put somewhere else, maybe in the pages\api?
 
 export async function PUT(request, {params}){
     const {id} = params;
@@ -16,7 +16,7 @@ export async function PUT(request, {params}){
 }
 
 export async function DELETE(request, {params}){
-    const {id}= params;  
+    const {id}= params;
     await connectMongoDB();
     const res = await Task.findByIdAndDelete(id);
     return NextResponse.json({
@@ -34,7 +34,7 @@ export async function GET(request){
       }, {
           status: 200
       });
-     
+
   } catch (error) {
     return NextResponse.json({
         message: 'Error',

@@ -1,18 +1,21 @@
 "use client";
 
-//TODO implement a button to skip line to the first completed task
+// TODO: delete comment
+//implement a button to skip line to the first completed task
 
 import React, { useState, useEffect } from "react";
 import TaskCard from "components/TaskCard";
 import ProgressionBar from "components/ProgressionBar";
 
 export default function Home() {
-  const tasksFromLS = JSON.parse(localStorage.getItem("tasks" || "[]"));
+  // TODO: Once auth is built in, keep track of user's current tasks in DB
+  const tasksFromLS = JSON.parse(localStorage.getItem('tasks') || '[]');
   const [tasks, setTasks] = useState([...tasksFromLS]);
 
   // Update local storage whenever tasks change
   useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+    // TODO: change localStorage syntax
+    localStorage.setItem('tasks', JSON.stringify(tasks));
   }, [tasks]);
 
   const fetchTask = async () => {
@@ -28,14 +31,18 @@ export default function Home() {
     }
   };
 
-  return (
-    <main>
-      <div className="pt-3">
-        <a href="/Profile">
-          <ProgressionBar totalTasks={tasks.length} completedTasks={tasks.filter((task) => task.completed).length} />
-        </a>
-      </div>
 
+
+  return (
+    // TODO: HTML Structure has repeated main semantic HTML. Pick one
+  <main >
+    <div className="pt-3" >
+        <a href="/Profile">
+          {/* Put state below into redux and a provider function */}
+      <ProgressionBar totalTasks={tasks.length} completedTasks={tasks.filter(task => task.completed).length} />
+      </a>
+      </div>
+        {/* TODO: Make a TaskList component and move task logic into it. */}
       <div className="container mx-auto px-4 pt-2">
         {tasks.length === 0 ? (
           <div className="text-center my-10">
@@ -50,18 +57,13 @@ export default function Home() {
       </div>
 
       <div className="fixed bottom-4 left-4">
-        <button
-          onClick={fetchTask}
-          className="bg-red-300 text-gray-800 text-white p-4 rounded-full shadow-lg animate-pulse transition-all duration-200 ease-in-out transform hover:scale-110 cursor-pointer">
-          <svg className="h-6 w-6" fill="black" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <path
-              fillRule="evenodd"
-              d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </button>
-      </div>
-    </main>
+        <button onClick={fetchTask} className="bg-red-300 text-gray-800 text-white p-4 rounded-full shadow-lg animate-pulse transition-all duration-200 ease-in-out transform hover:scale-110 cursor-pointer">
+          {/* TODO: Make svg below a component */}
+         <svg className="h-6 w-6" fill="black" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+           <path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd" />
+         </svg>
+      </button>
+     </div>
+   </main>
   );
 }

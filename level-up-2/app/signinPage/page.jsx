@@ -1,5 +1,8 @@
 'use client';
 
+//TODO: Add actual auth logic
+// TODO: Add register logic
+
 const handleLogin = () => {
   window.location.href = '/HomePage';
 };
@@ -68,6 +71,7 @@ export default function SignIn() {
           </div>
         </form>
       </div>
+      {/* TODO: delete below div */}
       <div className="hidden w-full bg-cover md:block md:w-1/2" style={{ backgroundImage: "url('your-background-image-url.jpg')" }}>
         {/* Background Image (if you have one) */}
       </div>

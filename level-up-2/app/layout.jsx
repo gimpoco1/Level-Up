@@ -1,5 +1,6 @@
 import { Nunito } from 'next/font/google'
 import './globals.css'
+// TODO: add redux here
 
 const nunito = Nunito({
   weight:['600', '700'],
@@ -16,11 +17,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${nunito.className} bg-gradient-to-r from-orange-100 via-orange-200 to-orange-300`}>
+        {/* TODO: Remove nav here completely and use css to center the div below */}
         <nav>
           <div className="display:none">
+            {/* TODO: Replace favicon with the logo */}
             {/* Logo */}
             <img src="/logo1.png" alt="Level Up Logo" className="h-20 md:h-28 opacity-0" />
-          
+
           </div>
         </nav>
         <main className="container mx-auto px-4 mt-8">
