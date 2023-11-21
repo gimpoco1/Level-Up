@@ -21,7 +21,7 @@ export default function TaskCard({ tasks, setTasks }) {
 
   const onToggleComplete = async (taskId, completed) => {
     // Logic for handling toggle complete
-    await fetch(`http://localhost:3001/api/tasks/${taskId}`, {
+    await fetch(`http://localhost:3000/api/tasks/${taskId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ newCompleted: !completed }),

@@ -13,7 +13,7 @@ export async function POST(request){
    })
   }
 
-export async function GET( request){
+export async function GET(request){
       try {
          await connectMongoDB();
           const task = await Task.aggregate([{ $sample: { size: 1 } }]);
